@@ -12,11 +12,11 @@ const genClassName = (() => {
 	}
 
 	return () => {
-		let uid = chars[0]; // Имя класса начинается на a-z
+		let class_name = chars[0]; // Имя класса не может начинаться с цифры
 		for (let i = 0; i < 9; ++i) {
-			uid += chars[Math.floor(Math.random() * chars.length)];
+			class_name += chars[Math.floor(Math.random() * chars.length)];
 		}
-		return uid;
+		return class_name;
 	}
 })();
 
