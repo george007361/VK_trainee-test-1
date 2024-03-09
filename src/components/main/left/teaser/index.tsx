@@ -34,7 +34,7 @@ export default ({item, index, transform}) => {
 		<Block className={classes.join(' ')}>
 
 			<Block className={transform('title')}>
-				{title}
+				<SmokeText>{title}</SmokeText>
 			</Block>
 
 			{image_src && (
@@ -48,7 +48,7 @@ export default ({item, index, transform}) => {
 			)}
 
 			<Block className={transform('content')}>
-				{body}
+				<SmokeText>{body}</SmokeText>
 			</Block>
 
 			{warning && (
