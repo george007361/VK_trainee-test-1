@@ -1,42 +1,30 @@
 import * as React from 'react';
-
-// Создать строку длиной 10 из 9 случайных a-z и 0-9
-const genClassName = (() => {
-	// Алфавит
-	const chars : string[] = [];
-	for (let i = 0; i < 9; ++i) {
-		// Случайные a-z символы
-		chars.push(String.fromCharCode(Math.floor(Math.random() * (122 - 97)) + 97));
-		// Цифры
-		chars.push(i.toString());
-	}
-
-	return () => {
-		let class_name = chars[0]; // Имя класса не может начинаться с цифры
-		for (let i = 0; i < 9; ++i) {
-			class_name += chars[Math.floor(Math.random() * chars.length)];
-		}
-		return class_name;
-	}
-})();
-
+import * as cid from 'smokescreen/Cid';
 
 interface IImageProps {
 	src: string,
 	width: number;
 	height: number;
+	className ?: string;
 }
 
 export default (props : IImageProps) => {
-	const { src, width, height} = props;
-	const class_name = genClassName();
-	
+	const { src, width, height, className: otherClassName} = props;
+	const imgClassName : string = cid();
+	const classes = [
+		imgClassName
+	];
+
+	if(otherClassName) {
+		classes.push(otherClassName);
+	}
+
 	return (
 		<>
 			<style>
-				{`.${class_name}{content: url(${src});width:${width}px;height:${height}px;}.${class_name}:hover{transform: scale(1.02);}`} 
+				{`.${imgClassName}{content: url(${src});width:${width}px;height:${height}px;}`} 
 			</style>
-			<div className={class_name}/>
+			<div className={classes.join(' ')}/>
 		</>
 	);
 };
