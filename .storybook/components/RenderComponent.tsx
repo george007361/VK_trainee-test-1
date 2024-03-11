@@ -14,6 +14,8 @@ export const locatorMatches = [
 	'warning',
 
 	'teaser',
+
+	'img'
 ];
 
 const response = require(`../responses/teaser-2.json`);
@@ -37,31 +39,31 @@ export default class extends React.Component<any> {
 		const element = this.node.current;
 
 		if (/18\+/.test(element.innerHTML)) {
-			console.warn('item was found 1');
+			console.warn('regexp 18+ HTML found');
 		}
 
 		if (/м.*о.*с.*к.*в.*а/i.test(element.innerHTML)) {
-			console.warn('item was found 2');
+			console.warn('regexp м-о-с-к-в-а found');
 		}
 
 		if (getElementByXpath('//*[@id="root"]/div//div[contains(text(), "18+")]')) {
-			console.warn('item was found 3');
+			console.warn('xpath 18+ found');
 		}
 
 		if (getElementByXpath('//*[@id="root"]/div//img')) {
-			console.warn('item was found 4');
+			console.warn('xpath img found');
 		}
 
 		if (/18\+/.test(element.innerText)) {
-			console.warn('item was found 5');
+			console.warn('regexp 18+ TEXT found');
 		}
 
 		if (getElementByXpath('//*[@id="root"]/div//div[contains(@class, "img")]')) {
-			console.warn('item was found 6');
+			console.warn('xpath div with class img found');
 		}
 
 		if (getElementByXpath('//*[@id="root"]/div//div[@style]')) {
-			console.warn('item was found 7');
+			console.warn('xpath div with style found');
 		}
 	}
 
